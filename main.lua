@@ -9,7 +9,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 --sets the backgorund colour
-display.setDefault("background", 124/255, 249/255, 199/255)
+display.setDefault("background", 251/255, 166/255, 250/255)
 
 ---------------------------------------------------------------------------------------------
 --LOCAL VARIABLES
@@ -32,6 +32,7 @@ local incorrectAnswer
 
 local function AskQuestion()
 	--generate 2 random numbers between a max. and a mn. number
+<<<<<<< HEAD
 	randomNumber1 = math.random(0,10)
 	randomNumber2 = math.random(0,10)
 	randomOperator = math.random(1,3)
@@ -47,9 +48,19 @@ end
 
 if (randomOperator == 2) then 
 	correctAnswer = randomNumber1 - randomNumber2
+=======
+	randomNumber1 = math.random(10,20)
+	randomNumber2 = math.random(10,20)
+>>>>>>> 4eba5c9a38155439facaa921e5942b8f7089b055
 
+	correctAnswer = randomNumber1 + randomNumber2 
+		
 	--create question in text object
+<<<<<<< HEAD
 	questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
+=======
+	questionObject.text = randomNumber1 .. "+" .. randomNumber2 .. "=" 
+>>>>>>> 4eba5c9a38155439facaa921e5942b8f7089b055
 end
 
 if (randomOperator == 3) then 
@@ -65,9 +76,15 @@ local function HideCorrect()
 	AskQuestion()
 end
 
+local function HideIncorrect()
+	incorrectObject.isVisible = false
+	AskQuestion()
+end
+
+
 local function NumericFieldListener(event)
 
-	--User begins editiing "numericField"
+	--user begins editiing "numericField"
 	if (event.phase == "began") then
 
 		--clear text field
@@ -82,11 +99,12 @@ local function NumericFieldListener(event)
 		if (userAnswer == correctAnswer) then
 			correctObject.isVisible = true
 			incorrectObject.isVisible = false
-			timer.performWithDelay(2000,HideCorrect)
-		elseif (userAnswer == incorrectAnswer) then
+			timer.performWithDelay(1000,HideCorrect)
+		
+		elseif (userAnswer) then
 			correctObject.isVisible = false
 			incorrectObject.isVisible = true
-			timer.performWithDelay(2000,HideCorrect)
+			timer.performWithDelay(1000,HideIncorrect)
 		end
 	end
 end
@@ -96,21 +114,21 @@ end
 ----------------------------------------------------------------------------------------------
 
 --displays a question and sets the colour
-questionObject = display.newText("", display.contentWidth/3, display.contentHeight/2, nil, 50)
-questionObject:setTextColor(155/255, 42/255, 198/255)
+questionObject = display.newText("", display.contentWidth/3, display.contentHeight/2, nil, 80)
+questionObject:setTextColor(27/255, 71/255, 144/255)
 
 --create the correct text object and make it invisible
 correctObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-correctObject:setTextColor(155/255, 42/255, 198/255)
+correctObject:setTextColor(27/255, 144/255, 35/255)
 correctObject.isVisible = false
 
 --create the correct text object and make it invisible
-incorrectObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-incorrectObject:setTextColor(155/255, 42/255, 198/255)
+incorrectObject = display.newText("Incorrect", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+incorrectObject:setTextColor(1, 0, 0)
 incorrectObject.isVisible = false
 
 --create numeric field
-numericField = native.newTextField(display.contentWidth/2, display.contentHeight/2, 150, 80)
+numericField = native.newTextField(600, display.contentHeight/2, 200, 100)
 numericField.inputType = "number"
 
 --add the event listener for the numeric field
