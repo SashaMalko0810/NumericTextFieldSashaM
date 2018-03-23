@@ -34,12 +34,31 @@ local function AskQuestion()
 	--generate 2 random numbers between a max. and a mn. number
 	randomNumber1 = math.random(0,10)
 	randomNumber2 = math.random(0,10)
-
-	correctAnswer = randomNumber1 + randomNumber2
-
+	randomOperator = math.random(1,3)
+end
+     
+if (randomOperator == 1) then
+    correctAnswer = randomNumber1 + randomNumber2
+	
 	--create question in text object
 	questionObject.text = randomNumber1 .. "+" .. randomNumber2 .. "="
+	
 end
+
+if (randomOperator == 2) then 
+	correctAnswer = randomNumber1 - randomNumber2
+
+	--create question in text object
+	questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
+end
+
+if (randomOperator == 3) then 
+	correctAnswer = randomNumber1 * randomNumber2
+
+	--create question in text object
+	questionObject.text = randomNumber1 .. "*" .. randomNumber2 .. "="
+end
+
 
 local function HideCorrect()
 	correctObject.isVisible = false
