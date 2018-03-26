@@ -55,6 +55,7 @@ local function AskQuestion()
 	randomNumber4 = math.random(0,10)
     randomOperator = math.random(1,3)  
     
+    --display the points on the screen 
     pointsObject.text = "Points" .. " = ".. points
    
     if (randomOperator == 1) then
@@ -62,21 +63,21 @@ local function AskQuestion()
 	
 	--create question in text object
 	questionObject.text = randomNumber1 .. "+" .. randomNumber2 .. "="
-	
-    end
+	end
 
     if (randomOperator == 2) then 
 	correctAnswer = randomNumber1 - randomNumber2
-	--create a question in text object
-    questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
+	
+	  --create a question in text object
+      questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
+      
       if correctAnswer < 0 then 
       correctAnswer = randomNumber2 - randomNumber1
+      
       --create a question in text object
       questionObject.text = randomNumber2 .. "-" .. randomNumber1 .. "="
-      end
-    end
-		
-
+  end
+      
     if (randomOperator == 3) then 
 	correctAnswer = randomNumber3 * randomNumber4
 
@@ -134,8 +135,10 @@ local function NumericFieldListener(event)
 	    			clockText.isVisible = false
 	    			gameOverSoundChannel = audio.play(gameOverSound)
 	        end 
+	    
 	    --clear text field
 		event.target.text = ""
+		
 		end
 	end
 end
@@ -222,9 +225,11 @@ heart4 = display.newImageRect("Images/heart.png", 100, 100)
 heart4.x = display.contentWidth * 4 / 8
 heart4.y = display.contentHeight * 1 / 7
 
+--display the timer
 clockText = display.newText("", 100, 100, Arial,70)
 clockText:setTextColor(114/255, 32/255, 27/255)
 
+--create a game over scene
 gameOver = display.newImageRect("Images/gameOver.png", 1100, 1100)
 gameOver.x = 500
 gameOver.y = 400
@@ -238,6 +243,8 @@ gameOver.isVisible = false
 --call the function to ask the question
 AskQuestion()
 
+--call the function to update the time
 UpdateTime()
 
+--call the function to start the timer
 StartTimer()
