@@ -61,7 +61,9 @@ local function AskQuestion()
 
     if (randomOperator == 2) then 
 	correctAnswer = randomNumber1 - randomNumber2
-
+      if correctAnswer < 0 then 
+      correctAnswer = randomNumber2 - randomNumber1
+      end
     --create a question in text object
     questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
 
@@ -126,6 +128,8 @@ local function NumericFieldListener(event)
 	    			clockText.isVisible = false
 	    			gameOverSoundChannel = audio.play(gameOverSound)
 	        end 
+	    --clear text field
+		event.target.text = ""
 		end
 	end
 end
