@@ -22,6 +22,8 @@ local incorrectObject
 local numericField
 local randomNumber1
 local randomNumber2
+local randomNumber3
+local randomNumber4
 local userAnswer
 local correctAnswer
 local incorrectAnswer
@@ -49,8 +51,12 @@ local function AskQuestion()
 	--generate 2 random numbers between a max. and a min. number
 	randomNumber1 = math.random(10,20)
 	randomNumber2 = math.random(10,20)
+	randomNumber3 = math.random(0,10)
+	randomNumber4 = math.random(0,10)
     randomOperator = math.random(1,3)  
     
+    pointsObject.text = "Points" .. " = ".. points
+   
     if (randomOperator == 1) then
     correctAnswer = randomNumber1 + randomNumber2
 	
@@ -61,20 +67,21 @@ local function AskQuestion()
 
     if (randomOperator == 2) then 
 	correctAnswer = randomNumber1 - randomNumber2
+	--create a question in text object
+    questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
       if correctAnswer < 0 then 
       correctAnswer = randomNumber2 - randomNumber1
+      --create a question in text object
+      questionObject.text = randomNumber2 .. "-" .. randomNumber1 .. "="
       end
-    --create a question in text object
-    questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
-
     end
 		
 
     if (randomOperator == 3) then 
-	correctAnswer = randomNumber1 * randomNumber2
+	correctAnswer = randomNumber3 * randomNumber4
 
 	--create question in text object
-	questionObject.text = randomNumber1 .. "*" .. randomNumber2 .. "="
+	questionObject.text = randomNumber3 .. "*" .. randomNumber4 .. "="
     end
 end
 
@@ -108,9 +115,8 @@ local function NumericFieldListener(event)
 			timer.performWithDelay(1000,HideCorrect)
 			points = points + 1
 			pointsObject.text = "Points" .. " = ".. points
-			pointsObject:setTextColor(27/255, 144/255, 35/255)
-
-		elseif (userAnswer) then
+			
+            elseif (userAnswer) then
 			correctObject.isVisible = false
 			incorrectObject.isVisible = true
 			timer.performWithDelay(1000,HideIncorrect)
