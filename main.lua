@@ -72,11 +72,11 @@ local function AskQuestion()
       questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
       
       if correctAnswer < 0 then 
-      correctAnswer = randomNumber2 - randomNumber1
+         correctAnswer = randomNumber2 - randomNumber1
       
-      --create a question in text object
-      questionObject.text = randomNumber2 .. "-" .. randomNumber1 .. "="
-  end
+         --create a question in text object
+         questionObject.text = randomNumber2 .. "-" .. randomNumber1 .. "="
+    end end
       
     if (randomOperator == 3) then 
 	correctAnswer = randomNumber3 * randomNumber4
