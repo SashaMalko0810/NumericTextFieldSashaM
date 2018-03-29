@@ -66,11 +66,12 @@ local function AskQuestion()
 	end
 
     if (randomOperator == 2) then 
-	correctAnswer = randomNumber1 - randomNumber2
+	   correctAnswer = randomNumber1 - randomNumber2
 	
-	  --create a question in text object
-      questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
-      
+	   --create a question in text object
+       questionObject.text = randomNumber1 .. "-" .. randomNumber2 .. "="
+     
+
       if correctAnswer < 0 then 
          correctAnswer = randomNumber2 - randomNumber1
       
