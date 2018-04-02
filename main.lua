@@ -136,11 +136,9 @@ local function NumericFieldListener(event)
 	    			clockText.isVisible = false
 	    			gameOverSoundChannel = audio.play(gameOverSound)
 	        end 
-	    
-	    --clear text field
-		event.target.text = ""
-		
 		end
+	--clear text field
+	event.target.text = ""
 	end
 end
 
